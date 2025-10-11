@@ -2,7 +2,7 @@ import News from './components/News';
 
 const App = () => {
   return (
-    <div className="w-screen h-screen bg-neutral-50">
+    <div className="w-screen bg-neutral-50">
       <News />
     </div>
   );

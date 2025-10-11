@@ -40,13 +40,13 @@ const Bookmarks = ({
               <img
                 src={article.image || noImg}
                 alt={article.title}
-                className="w-20 h-20 object-cover rounded-lg mr-4"
+                className="w-12 h-12 sm:w-20 sm:h-20 object-cover rounded-lg mr-4"
               />
-              <h3 className="font-comfortaa text-sm sm:text-base font-normal text-neutral-50">
+              <h3 className="font-comfortaa font-light text-sm sm:text-base text-neutral-50">
                 {article.title}
               </h3>
               <span
-                className="delete-button text-2xl text-purple-400 cursor-pointer"
+                className="delete-button text-xl sm:text-2xl text-purple-400 cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
                   onDeleteBookmark(article);

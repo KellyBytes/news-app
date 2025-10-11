@@ -2,7 +2,7 @@
 
 ## Overview
 
-A dashboard-style web application that displays the latest news, current weather, and a calendar. It fetches top headlines and category-based articles from the GNews API. Users can bookmark their favorite articles to easily revisit them later.
+A dashboard-style web application that displays the latest news and the current weather. It fetches top headlines and category-based articles from the GNews API. Users can bookmark their favorite articles to easily revisit them later.
 
 ### Features
 
@@ -10,7 +10,6 @@ A dashboard-style web application that displays the latest news, current weather
 - Search news with keywords
 - Bookmark articles
 - Check the current weather
-- Calendar
 - Responsive design
 
 ### Built with

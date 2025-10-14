@@ -229,7 +229,7 @@ const Weather = () => {
                 <input
                   type="text"
                   placeholder="Enter Location"
-                  className="w-40 md:w-48 h-8 bg-transparent text-base outline-0 pl-4"
+                  className="w-40 sm:w-54 md:w-64 h-8 bg-transparent text-base outline-0 pl-4"
                   value={location}
                   autoFocus
                   onChange={handleInputChange}

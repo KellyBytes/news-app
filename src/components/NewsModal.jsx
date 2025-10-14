@@ -14,9 +14,9 @@ const NewsModal = ({ show, article, onClose, bookmarks, onClickBookmark }) => {
       className="modal-overlay fixed inset-0 bg-[rgba(0,0,0,0.7)] flex justify-center items-center -mt-10 z-[1000]"
       onClick={handleOverlayClick}
     >
-      <div className="modal-content w-[90%] md:max-w-[30rem] xl:max-w-[36rem] 2xl:max-w-[40rem] h-auto max-h-[85%] bg-neutral-900 p-8 2xl:p-10 rounded-xl shadow-[0,0,5rem,rgba(0,0,0,0.5)] relative overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ">
+      <div className="modal-content w-[90%] md:max-w-[30rem] xl:max-w-[36rem] h-auto max-h-[85%] bg-neutral-900 p-8 2xl:p-10 rounded-xl shadow-[0,0,5rem,rgba(0,0,0,0.5)] relative overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ">
         <span
-          className="close-button absolute xl:top-2 xl:right-4 2xl:top-3 2xl:right-5 text-lg text-neutral-100 cursor-pointer"
+          className="close-button absolute top-1 right-4 xl:top-2 xl:right-4 2xl:top-3 2xl:right-5 text-lg text-neutral-100 cursor-pointer"
           onClick={onClose}
         >
           <i className="fa-solid fa-xmark"></i>
@@ -31,10 +31,10 @@ const NewsModal = ({ show, article, onClose, bookmarks, onClickBookmark }) => {
             <h2 className="modal-title font-bitter text-xl 2xl:text-2xl text-neutral-100 tracking-wide mt-6 xl:mt-8">
               {article.title}
             </h2>
-            <p className="modal-source font-comfortaa text-xs 2xl:text-sm text-neutral-300 mt-4">
+            <p className="modal-source font-comfortaa font-light text-xs 2xl:text-sm text-neutral-300 mt-4">
               Source: {article.source.name}
             </p>
-            <p className="modal-date font-comfortaa text-xs 2xl:text-sm text-neutral-300 mt-2">
+            <p className="modal-date font-comfortaa font-light text-xs 2xl:text-sm text-neutral-300 mt-2">
               {new Date(article.publishedAt).toLocaleString('en-CA', {
                 month: 'short',
                 day: '2-digit',

@@ -42,7 +42,7 @@ const Bookmarks = ({
                 alt={article.title}
                 className="w-12 h-12 sm:w-20 sm:h-20 object-cover rounded-lg mr-4"
               />
-              <h3 className="font-comfortaa font-light text-xs sm:text-sm md:text-base text-neutral-50">
+              <h3 className="font-comfortaa sm:font-light text-xs sm:text-sm md:text-base text-neutral-50">
                 {article.title}
               </h3>
               <span

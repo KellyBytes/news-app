@@ -43,7 +43,12 @@ News modal and bookmarks
 **Mobile**
 
 <p>
-  <img src="./public/images/news-app-mobile-1.png" height="250" style="margin-right: 5px;"/>
-  <img src="./public/images/news-app-mobile-2.png" height="250" style="margin-right: 5px;"/>
+  <img src="./public/images/news-app-mobile.png" height="250" style="margin-right: 10px;"/>
 </p>
 <br />
+
+**Wireframe**
+
+<p>
+  <img src="./public/images/news-app-wireframe.png" height="250"/>
+</p>

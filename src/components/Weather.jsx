@@ -128,8 +128,8 @@ const Weather = () => {
   }, [showInput]);
 
   return (
-    <div className="weather w-full h-full lg:h-[35vh] lg:max-h-[24rem] flex flex-row lg:flex-col justify-around lg:justify-center items-center gap-y-4 p-4 rounded-xl shadow-lg bg-neutral-800 text-neutral-100">
-      <div className="date font-comfortaa text-sm sm:text-base md:text-lg">
+    <div className="weather w-full h-full lg:h-[35vh] lg:max-h-[24rem] flex flex-row lg:flex-col justify-around lg:justify-center items-center gap-y-4 xl:gap-y-1 p-4 xl:p-6 rounded-xl shadow-lg bg-neutral-800 text-neutral-100">
+      <div className="date font-comfortaa text-sm sm:text-base md:text-lg lg:text-base">
         <p>
           {new Date().toLocaleString('en-CA', {
             weekday: 'short',
@@ -146,10 +146,10 @@ const Weather = () => {
         </div>
       ) : (
         <div className="weather-data flex flex-row items-center gap-x-3 lg:flex-col gap-y-1">
-          <div className="location hidden lg:flex justify-center gap-x-3 lg:pb-2 xl:pb-4">
+          <div className="location hidden lg:flex justify-center gap-x-3 lg:pb-0 xl:pb-2">
             <div className="flex">
-              <i className="fa-solid fa-location-dot xl:text-lg translate-y-1 xl:translate-y-2"></i>
-              <div className="font-comfortaa font-bold xl:text-lg 2xl:text-xl pl-2">
+              <i className="fa-solid fa-location-dot xl:text-base 2xl:text-lg xl:translate-y-1 2xl:translate-y-2"></i>
+              <div className="font-comfortaa font-bold xl:text-base 2xl:text-lg pl-2">
                 {data.name}
                 {data.sys ? `, ${data.sys.country}` : null}
               </div>
@@ -157,20 +157,20 @@ const Weather = () => {
 
             <div className="search-location relative">
               <i
-                className="fa-solid fa-magnifying-glass xl:text-lg  xl:translate-y-1 text-neutral-100/80 cursor-pointer"
+                className="fa-solid fa-magnifying-glass xl:text-base 2xl:text-lg xl:translate-y-0 2xl:translate-y-1 text-neutral-100/80 cursor-pointer"
                 onClick={handleToggle}
               ></i>
               {showInput && (
                 <div
                   ref={inputRef}
-                  className={`search-input absolute -right-12 top-8 bg-neutral-950/90 backdrop-blur-md shadow-lg rounded-xl p-2 z-10 ${
+                  className={`search-input absolute lg:-right-3 lg:top-6 xl:-right-6 xl:top-8 bg-neutral-950/90 backdrop-blur-md shadow-lg rounded-xl p-2 z-10 ${
                     animating ? 'animate-fadeOutX' : 'animate-fadeInX'
                   } `}
                 >
                   <input
                     type="text"
                     placeholder="Enter Location"
-                    className="w-60 h-10 bg-transparent outline-0 xl:text-lg 2xl:text-xl pl-4"
+                    className="lg:w-42 xl:w-48 h-8 bg-transparent outline-0 lg:text-base 2xl:text-lg pl-4"
                     value={location}
                     // onFocus={(e) => (e.target.value = '')}
                     autoFocus
@@ -190,7 +190,7 @@ const Weather = () => {
             } text-[clamp(2.25rem,1.8rem+2.35vw,4.5rem)]`}
           ></i>
 
-          <div className="weather-type hidden lg:block font-comfortaa text-[clamp(0.875rem,0.8rem+0.475vw,1.25rem)]">
+          <div className="weather-type hidden lg:block font-comfortaa xl:text-base">
             {data.weather ? data.weather[0].main : null}
           </div>
 
@@ -198,7 +198,7 @@ const Weather = () => {
             <div className="lg:hidden font-comfortaa text-xs sm:text-sm md:text-base">
               {data.name}
             </div>
-            <div className="temp font-comfortaa font-bold text-xl xl:text-2xl lg:pb-2 xl:pb-4">
+            <div className="temp font-comfortaa font-bold text-base xl:text-lg 2xl:text-xl lg:pb-0 xl:pb-2">
               {data.main ? `${Math.floor(data.main.temp)}℃` : null}
             </div>
           </div>
@@ -216,7 +216,7 @@ const Weather = () => {
 
           <div className="search-location lg:hidden relative">
             <i
-              className="fa-solid fa-magnifying-glass xl:text-lg  xl:translate-y-1 text-neutral-100/80 cursor-pointer"
+              className="fa-solid fa-magnifying-glass text-lg text-neutral-100/80 cursor-pointer"
               onClick={handleToggle}
             ></i>
             {showInput && (
@@ -229,7 +229,7 @@ const Weather = () => {
                 <input
                   type="text"
                   placeholder="Enter Location"
-                  className="w-52 h-10 bg-transparent outline-0 xl:text-lg 2xl:text-xl pl-4"
+                  className="w-40 md:w-48 h-8 bg-transparent text-base outline-0 pl-4"
                   value={location}
                   autoFocus
                   onChange={handleInputChange}
@@ -239,20 +239,20 @@ const Weather = () => {
             )}
           </div>
           <div className="extra-info hidden lg:flex gap-6">
-            <div className="humidity text-sm xl:text-base 2xl:text-lg text-neutral-300">
+            <div className="humidity text-xs xl:text-sm 2xl:text-base text-neutral-300">
               {data.main ? (
                 <>
                   <i className="fa-solid fa-droplet"></i> {data.main.humidity}
-                  <span className="text-xs xl:text-base">%</span>
+                  <span className="text-xs xl:text-sm">%</span>
                 </>
               ) : null}
             </div>
-            <div className="wind text-sm xl:text-base 2xl:text-lg text-neutral-300">
+            <div className="wind text-xs xl:text-sm 2xl:text-base text-neutral-300">
               {data.wind ? (
                 <>
                   <i className="fa-solid fa-wind"></i>{' '}
                   {Math.floor(data.wind.speed)}
-                  <span className="text-xs xl:text-base"> m/s </span>
+                  <span className="text-xs xl:text-sm"> m/s </span>
                   {getWindDirection(data.wind.deg)}
                 </>
               ) : null}

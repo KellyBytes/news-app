@@ -101,7 +101,7 @@ const News = () => {
   return (
     <div className="news-container w-full min-h-full flex flex-col justify-between items-center">
       <header className="news-header w-full h-fit flex justify-center bg-neutral-800 text-neutral-100">
-        <div className="w-[clamp(18.75rem,90vw+1rem,80rem)] flex flex-col items-center gap-y-4 lg:flex-row lg:justify-between lg:items-center px-8 py-4">
+        <div className="w-[clamp(18.75rem,9rem+48.75vw,67.5rem)] flex flex-col items-center gap-y-4 lg:flex-row lg:justify-between lg:items-center px-8 pt-4 pb-0 lg:py-4">
           <h1 className="logo font-bitter font-[600] text-[clamp(1.5rem,0.95rem+0.875vw,2rem)] tracking-wide">
             Google News
           </h1>
@@ -126,9 +126,9 @@ const News = () => {
       </header>
 
       <nav className="navbar sticky top-0 z-10 w-full h-fit flex justify-center bg-neutral-800 text-neutral-100">
-        <div className="nav-links w-[clamp(18.75rem,85vw+1rem,80rem)] flex justify-center flex-wrap gap-4 py-4 text-[clamp(1rem,0.975rem+0.125vw,1.125rem)] uppercase tracking-wide">
+        <div className="nav-links w-[clamp(18.75rem,9rem+48.75vw,67.5rem)] flex justify-center gap-4 py-2 md:py-4 text-[clamp(0.75rem,0.7rem+0.25vw,1rem)] uppercase tracking-wide">
           {/* for larger screens */}
-          <div className="hidden md:flex flex-wrap justify-center gap-x-4">
+          <div className="hidden lg:flex flex-nowrap justify-center gap-x-4 gap-y-2">
             {categories.map((category) => (
               <a
                 href="#"
@@ -146,13 +146,12 @@ const News = () => {
               className="nav-link"
               onClick={() => setShowBookmarksModal(true)}
             >
-              Bookmarks{' '}
               <i className="bx bxs-bookmarks text-xl align-middle"></i>
             </a>
           </div>
 
           {/* for smaller screens */}
-          <div className="w-full flex justify-between items-center md:hidden">
+          <div className="w-full flex justify-between items-center lg:hidden">
             <button onClick={() => setMenuOpen(!menuOpen)}>
               <i className="bx bx-menu text-3xl"></i>
             </button>
@@ -170,7 +169,7 @@ const News = () => {
           </div>
 
           <div
-            className={`absolute top-4 left-4 sm:left-10 w-fit bg-neutral-900 flex flex-col gap-4 px-4 py-4 rounded-2xl transition-all duration-300 ease-in-out ${
+            className={`absolute top-4 left-4 sm:left-10 md:left-18 w-fit bg-neutral-900 flex flex-col gap-4 px-4 py-4 rounded-2xl transition-all duration-300 ease-in-out ${
               menuOpen
                 ? 'opacity-100 translate-y-0 pointer-events-auto'
                 : 'opacity-0 -translate-y-4 pointer-events-none'
@@ -195,15 +194,15 @@ const News = () => {
         </div>
       </nav>
 
-      <div className="news-content w-[clamp(18.75rem,90vw+1rem,80rem)] flex-1 overflow-y-auto flex flex-col gap-y-4 pt-6 pb-16">
-        <div className="w-full lg:h-[35vh] lg:max-h-[24rem] flex flex-col lg:flex-row-reverse justify-between gap-y-4">
-          <div className="weather w-full lg:w-[33%]">
+      <div className="news-content w-[clamp(18.75rem,80vw,66rem)] flex-1 overflow-y-auto flex flex-col gap-y-4 pt-6 pb-16">
+        <div className="w-full lg:h-[35vh] lg:max-h-[24rem] flex flex-col lg:flex-row-reverse justify-between gap-x-4 gap-y-4">
+          <div className="weather w-full lg:w-1/3">
             <Weather />
           </div>
 
           {headline && (
             <div
-              className="headline w-full lg:w-[calc(67%-1rem)] h-[30vh] min-h-64 lg:h-full rounded-xl overflow-hidden shadow-lg relative"
+              className="headline w-full lg:w-2/3 h-[30vh] min-h-64 lg:h-full rounded-xl overflow-hidden hover:bg-neutral-900 hover:ring hover:ring-neutral-800/20 hover:shadow-md hover:shadow-neutral-900/20 active:translate-y-1 transition duration-300 relative"
               onClick={() => {
                 handleArticleClick(headline);
               }}
@@ -211,9 +210,9 @@ const News = () => {
               <img
                 src={headline.image || noImg}
                 alt={headline.title}
-                className="w-full h-full object-cover opacity-90 rounded-xl"
+                className="w-full h-full object-cover rounded-xl opacity-90"
               />
-              <h2 className="headline-title absolute bottom-0 left-0 w-full pl-8 pr-16 py-8 font-bitter font-[500] uppercase text-[clamp(1rem,0.85rem+0.75vw,1.75rem)] tracking-wider text-neutral-100 bg-[rgba(0,0,0,0.7)] rounded-br-xl rounded-bl-xl">
+              <h2 className="headline-title absolute bottom-0 left-0 w-full pl-8 pr-16 py-8 font-bitter font-[500] uppercase text-[clamp(0.875rem,0.8rem+0.375vw,1.25rem)] tracking-wider text-neutral-100 bg-[rgba(0,0,0,0.7)] rounded-br-xl rounded-bl-xl">
                 {headline.title}
                 <i
                   className={`bx ${
@@ -233,7 +232,7 @@ const News = () => {
           )}
         </div>
 
-        <div className="news-grid w-full rounded-xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-start auto-rows-[18rem] sm:auto-rows-[20rem]">
+        <div className="news-grid w-full rounded-xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-start auto-rows-[18rem] sm:auto-rows-[12rem]">
           {news.map((article, index) => (
             <div
               key={index}
@@ -248,7 +247,7 @@ const News = () => {
                 className="w-full h-full block object-cover rounded-xl opacity-90"
               />
               <h3
-                className="absolute bottom-0 left-0 w-full pl-4 pr-12 py-4 font-bitter text-[clamp(0.875rem,0.775rem+0.5vw, 1.375rem)] tracking-wider text-neutral-100 bg-[rgba(0,0,0,0.7)] rounded-tl-0 rounded-tr-0 rounded-br-xl rounded-bl-xl
+                className="absolute bottom-0 left-0 w-full pl-4 pr-12 py-4 font-bitter text-[clamp(0.875rem,0.825rem+0.25vw,1.125rem)] tracking-wider text-neutral-100 bg-[rgba(0,0,0,0.7)] rounded-tl-0 rounded-tr-0 rounded-br-xl rounded-bl-xl
               "
               >
                 {article.title}

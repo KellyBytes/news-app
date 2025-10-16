@@ -247,7 +247,7 @@ const News = () => {
                 className="w-full h-full block object-cover rounded-xl opacity-90"
               />
               <h3
-                className="absolute bottom-0 left-0 w-full pl-4 pr-12 py-4 font-bitter text-[clamp(0.75rem,0.7rem+0.25vw,1rem)] tracking-wider text-neutral-100 bg-[rgba(0,0,0,0.7)] rounded-tl-0 rounded-tr-0 rounded-br-xl rounded-bl-xl
+                className="absolute bottom-0 left-0 w-full pl-4 pr-12 py-4 font-bitter text-[clamp(0.875rem,0.85rem+0.125vw,1rem)] tracking-wider text-neutral-100 bg-[rgba(0,0,0,0.7)] rounded-tl-0 rounded-tr-0 rounded-br-xl rounded-bl-xl
               "
               >
                 {article.title}

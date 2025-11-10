@@ -68,20 +68,20 @@ const News = () => {
   useEffect(() => {
     const fetchNews = async () => {
       // --- Comment out the following to deploy
-      // const N_API_KEY = import.meta.env.VITE_GNEWS_API_KEY;
-      // let url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&lang=en&country=ca&apikey=${N_API_KEY}`;
+      const N_API_KEY = import.meta.env.VITE_GNEWS_API_KEY;
+      let url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&lang=en&country=ca&apikey=${N_API_KEY}`;
 
-      // if (searchQuery) {
-      //   url = `https://gnews.io/api/v4/search?q=${searchQuery}&lang=en&country=ca&apikey=${N_API_KEY}`;
-      // }
+      if (searchQuery) {
+        url = `https://gnews.io/api/v4/search?q=${searchQuery}&lang=en&country=ca&apikey=${N_API_KEY}`;
+      }
 
-      // const response = await axios.get(url);
+      const response = await axios.get(url);
       /// --- Comment out above to deploy
 
       // --- Uncomment the following to deploy
-      const response = await axios.get(
-        `/.netlify/functions/getNews?category=${selectedCategory}&search=${searchQuery}`
-      );
+      // const response = await axios.get(
+      //   `/.netlify/functions/getNews?category=${selectedCategory}&search=${searchQuery}`
+      // );
       // --- Uncomment above to deploy
 
       const fetchedNews = response.data.articles;
@@ -90,7 +90,7 @@ const News = () => {
       setNews(fetchedNews.slice(1, 7));
     };
 
-    fetchNews();
+    // fetchNews();
   }, [selectedCategory, searchQuery]);
 
   useEffect(() => {
@@ -202,7 +202,7 @@ const News = () => {
 
           {headline && (
             <div
-              className="headline w-full lg:w-2/3 h-[30vh] lg:h-[35vh] lg:max-h-[24rem] rounded-xl overflow-hidden hover:bg-neutral-900 hover:ring hover:ring-neutral-800/20 hover:shadow-md hover:shadow-neutral-900/20 active:translate-y-1 transition duration-300 relative"
+              className="headline w-full lg:w-2/3 h-[30vh] lg:h-[35vh] lg:max-h-[24rem] rounded-md overflow-hidden hover:bg-neutral-900 hover:ring hover:ring-neutral-800/20 hover:shadow-md hover:shadow-neutral-900/20 active:translate-y-1 transition duration-300 relative"
               onClick={() => {
                 handleArticleClick(headline);
               }}
@@ -210,9 +210,9 @@ const News = () => {
               <img
                 src={headline.image || noImg}
                 alt={headline.title}
-                className="w-full h-full object-cover rounded-xl opacity-90"
+                className="w-full h-full object-cover rounded-md opacity-90"
               />
-              <h2 className="headline-title absolute bottom-0 left-0 w-full pl-8 pr-16 py-8 font-bitter font-[500] uppercase text-[clamp(0.875rem,0.825rem+0.25vw,1.125rem)] tracking-wider text-neutral-100 bg-[rgba(0,0,0,0.7)] rounded-br-xl rounded-bl-xl">
+              <h2 className="headline-title absolute bottom-0 left-0 w-full pl-8 pr-16 py-8 font-bitter font-[500] uppercase text-[clamp(0.875rem,0.825rem+0.25vw,1.125rem)] tracking-wider text-neutral-100 bg-[rgba(0,0,0,0.7)] rounded-br-md rounded-bl-md">
                 {headline.title}
                 <i
                   className={`bx ${
@@ -232,11 +232,11 @@ const News = () => {
           )}
         </div>
 
-        <div className="news-grid w-full rounded-xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-start auto-rows-[18rem] sm:auto-rows-[12rem]">
+        <div className="news-grid w-full rounded-md grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-start auto-rows-[18rem] sm:auto-rows-[12rem]">
           {news.map((article, index) => (
             <div
               key={index}
-              className="news-grid-item w-full h-full rounded-xl shadow-lg hover:bg-neutral-900 hover:ring hover:ring-neutral-800/20 hover:shadow-md hover:shadow-neutral-900/20 active:translate-y-1 transition duration-300 relative"
+              className="news-grid-item w-full h-full rounded-md shadow-lg hover:bg-neutral-900 hover:ring hover:ring-neutral-800/20 hover:shadow-md hover:shadow-neutral-900/20 active:translate-y-1 transition duration-300 relative"
               onClick={() => {
                 handleArticleClick(article);
               }}
@@ -244,13 +244,16 @@ const News = () => {
               <img
                 src={article.image || noImg}
                 alt={article.title}
-                className="w-full h-full block object-cover rounded-xl opacity-90"
+                className="w-full h-full block object-cover rounded-md opacity-90"
               />
-              <h3
-                className="absolute bottom-0 left-0 w-full pl-4 pr-12 py-4 font-bitter text-[clamp(0.875rem,0.85rem+0.125vw,1rem)] tracking-wider text-neutral-100 bg-[rgba(0,0,0,0.7)] rounded-tl-0 rounded-tr-0 rounded-br-xl rounded-bl-xl
-              "
-              >
-                {article.title}
+              <div className="absolute bottom-0 left-0 w-full bg-[rgba(0,0,0,0.7)] rounded-br-md rounded-bl-md p-4 pr-12">
+                <h3 className="font-bitter text-[clamp(0.875rem,0.85rem+0.125vw,1rem)] tracking-wider text-neutral-100 line-clamp-2 leading-tight">
+                  {article.title}
+                  {/* {article.title.length > 60
+                  ? article.title.slice(0, 60) + '…'
+                  : article.title} */}
+                </h3>
+
                 <i
                   className={`bx ${
                     bookmarks.some(
@@ -258,13 +261,13 @@ const News = () => {
                     )
                       ? 'bxs-bookmarks'
                       : 'bx-bookmarks'
-                  } text-base md:text-lg xl:text-xl absolute bottom-4 right-4 cursor-pointer`}
+                  } text-base md:text-lg xl:text-xl absolute bottom-4 right-4 text-neutral-100 cursor-pointer`}
                   onClick={(e) => {
                     e.stopPropagation();
                     handleBookmarkClick(article);
                   }}
                 ></i>
-              </h3>
+              </div>
             </div>
           ))}
         </div>

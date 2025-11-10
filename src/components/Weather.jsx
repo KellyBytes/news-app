@@ -160,7 +160,7 @@ const Weather = () => {
   }, [showInput]);
 
   return (
-    <div className="weather w-full h-full lg:h-[35vh] lg:max-h-[24rem] flex flex-row lg:flex-col justify-around lg:justify-center items-center gap-y-4 xl:gap-y-1 p-4 xl:p-6 rounded-xl shadow-lg bg-neutral-800 text-neutral-100">
+    <div className="weather w-full h-full lg:h-[35vh] lg:max-h-[24rem] flex flex-row lg:flex-col justify-around lg:justify-center items-center gap-y-4 xl:gap-y-1 p-4 xl:p-6 rounded-md shadow-lg bg-neutral-800 text-neutral-100">
       <div className="date font-comfortaa text-sm sm:text-base md:text-lg lg:text-base">
         <p>
           {new Date().toLocaleString('en-CA', {
@@ -201,7 +201,7 @@ const Weather = () => {
               {showInput && (
                 <div
                   ref={inputRef}
-                  className={`search-input absolute lg:-right-3 lg:top-6 xl:-right-6 xl:top-8 bg-neutral-950/90 backdrop-blur-md shadow-lg rounded-xl p-2 z-10 ${
+                  className={`search-input absolute lg:-right-3 lg:top-6 xl:-right-6 xl:top-8 bg-neutral-950/90 backdrop-blur-md shadow-lg rounded-4xl p-2 z-10 ${
                     animating ? 'animate-fadeOutX' : 'animate-fadeInX'
                   } `}
                 >
@@ -264,7 +264,7 @@ const Weather = () => {
             {showInput && (
               <div
                 ref={inputRef}
-                className={`search-input absolute right-6 top-1/2 -translate-y-1/2 bg-neutral-950/90 backdrop-blur-md shadow-lg rounded-xl p-2 z-10 ${
+                className={`search-input absolute right-6 top-1/2 -translate-y-1/2 bg-neutral-950/90 backdrop-blur-md shadow-lg rounded-4xl p-2 z-10 ${
                   animating ? 'animate-fadeOutX' : 'animate-fadeInX'
                 } `}
               >

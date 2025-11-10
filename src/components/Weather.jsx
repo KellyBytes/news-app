@@ -8,8 +8,9 @@ const Weather = () => {
   const [animating, setAnimating] = useState(false);
   const inputRef = useRef(null);
 
+  const W_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+
   const fetchWeather = async (city) => {
-    const W_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&APPID=${W_API_KEY}`;
 
     try {
@@ -25,6 +26,36 @@ const Weather = () => {
     } catch (error) {
       console.error('Error fetching weather data:', error);
       setData({ notFound: true });
+    }
+  };
+
+  const fetchWeatherByCoords = async (lat, lon) => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${W_API_KEY}`;
+
+    try {
+      const response = await axios.get(url);
+      setData(response.data);
+    } catch (error) {
+      console.error('Error fetching weather data by location:', error);
+      setError('Unable to get weather for your location');
+    }
+  };
+
+  const getCurrentLocationWeather = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const { latitude, longitude } = pos.coords;
+          fetchWeatherByCoords(latitude, longitude);
+        },
+        (err) => {
+          console.warn('Geolocation permission denied or unavailable', err);
+          fetchWeather('Edmonton');
+        }
+      );
+    } else {
+      console.warn('Geolocation not supported');
+      fetchWeather('Edmonton');
     }
   };
 
@@ -104,7 +135,8 @@ const Weather = () => {
   };
 
   useEffect(() => {
-    fetchWeather('Edmonton');
+    // fetchWeather('Edmonton');
+    getCurrentLocationWeather();
   }, []);
 
   useEffect(() => {
@@ -148,7 +180,12 @@ const Weather = () => {
         <div className="weather-data flex flex-row items-center gap-x-3 lg:flex-col gap-y-1">
           <div className="location hidden lg:flex justify-center gap-x-3 lg:pb-0 xl:pb-2">
             <div className="flex">
-              <i className="fa-solid fa-location-dot xl:text-base 2xl:text-lg xl:translate-y-1 2xl:translate-y-2"></i>
+              <i
+                className="fa-solid fa-location-crosshairs xl:text-base 2xl:text-lg translate-y-1 2xl:translate-y-2 cursor-pointer"
+                onClick={getCurrentLocationWeather}
+                title="Use my location"
+              ></i>
+              {/* <i className="fa-solid fa-location-dot xl:text-base 2xl:text-lg xl:translate-y-1 2xl:translate-y-2"></i> */}
               <div className="font-comfortaa font-bold xl:text-base 2xl:text-lg pl-2">
                 {data.name}
                 {data.sys ? `, ${data.sys.country}` : null}
@@ -159,6 +196,7 @@ const Weather = () => {
               <i
                 className="fa-solid fa-magnifying-glass xl:text-base 2xl:text-lg xl:translate-y-0 2xl:translate-y-1 text-neutral-100/80 cursor-pointer"
                 onClick={handleToggle}
+                title="Search location"
               ></i>
               {showInput && (
                 <div
@@ -194,8 +232,12 @@ const Weather = () => {
             {data.weather ? data.weather[0].main : null}
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col items-center">
             <div className="lg:hidden font-comfortaa text-xs sm:text-sm md:text-base">
+              <i
+                className="fa-solid fa-location-crosshairs cursor-pointer"
+                onClick={getCurrentLocationWeather}
+              ></i>{' '}
               {data.name}
             </div>
             <div className="temp font-comfortaa font-bold text-base xl:text-lg 2xl:text-xl lg:pb-0 xl:pb-2">

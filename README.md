@@ -1,54 +1,57 @@
-# News App
 
-## Overview
+# [News App](https://kb-news-app.netlify.app "Click to launch News App")
 
-A dashboard-style web application that displays the latest news and the current weather. It fetches top headlines and category-based articles from the GNews API. Users can bookmark their favorite articles to easily revisit them later.
+### Screenshots
 
-### Features
-
-- Read GNews Headlines and articles from chosen categories
-- Search news with keywords
-- Bookmark articles
-- Check the current weather
-- Responsive design
-
-### Built with
-
-- ReactJS
-- Tailwind CSS
-- GNews API
-- OpenWeatherMap API
+<img src="./public/images/news-app-desktop.png" width="600">
+<br/>
+<br/>
+<img src="./public/images/news-app-mobile.png" width="600">
+<br/>
 
 ---
 
-## Screenshots
+## 💡 Overview
 
-**Desktop**
+A **dashboard-style web application** that displays the latest news and current weather in a clean, responsive layout. It fetches top headlines and category-based articles from the **Google News API**, and weather data from the **OpenWeather API**. Users can **search**, **bookmark**, and **read** articles, as well as **check local weather** based on their current location or a city name.
 
-Dashboard
+---
 
-<p>
-  <img src="./public/images/news-app.png" height="250" style="margin-right: 5px;"/>
-</p>
-<br />
+## ⚙️ Key Features
 
-News modal and bookmarks
+- Browse **top headlines** and category-specific articles
+- **Search** news by keywords
+- **Bookmark** articles for later reading
+- **Check current weather** by city or user location
+- **Fully responsive** design for all screen sizes
 
-<p>
-  <img src="./public/images/news-modal.png" height="200" style="margin-right: 5px;"/>
-  <img src="./public/images/news-bookmarks.png" width="200"/>
-</p>
-<br />
+---
 
-**Mobile**
+## 🧠 What I Learned
 
-<p>
-  <img src="./public/images/news-app-mobile.png" height="250" style="margin-right: 10px;"/>
-</p>
-<br />
+- Integrating **multiple APIs** (Google News & OpenWeather) within a single React app
+- Handling **asynchronous data fetching** with error management
+- Implementing **state management** and local storage for user bookmarks
+- Improving **UI/UX accessibility** and responsive design
+- Using **environment variables** for secure API key management
 
-**Wireframe**
+---
 
-<p>
-  <img src="./public/images/news-app-wireframe.png" height="250"/>
-</p>
+## 🧰 Skills Demonstrated
+
+**Frontend**:	React, JavaScript (ES6+), HTML5, CSS3
+**Styling**:	Tailwind CSS, Flexbox, Grid
+**APIs**:	Google News API, OpenWeather API
+**Version Control & Deployment**:	Git, GitHub, Netlify
+
+---
+
+## 🚀 Future Improvements
+
+- Add user authentication for personalized bookmarks
+- Display hourly or 7-day weather forecasts
+- Implement dark mode for better accessibility
+
+---
+
+[🔼 Back to Top](#news-app)

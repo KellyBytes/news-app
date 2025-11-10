@@ -68,20 +68,20 @@ const News = () => {
   useEffect(() => {
     const fetchNews = async () => {
       // --- Comment out the following to deploy
-      const N_API_KEY = import.meta.env.VITE_GNEWS_API_KEY;
-      let url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&lang=en&country=ca&apikey=${N_API_KEY}`;
+      // const N_API_KEY = import.meta.env.VITE_GNEWS_API_KEY;
+      // let url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&lang=en&country=ca&apikey=${N_API_KEY}`;
 
-      if (searchQuery) {
-        url = `https://gnews.io/api/v4/search?q=${searchQuery}&lang=en&country=ca&apikey=${N_API_KEY}`;
-      }
+      // if (searchQuery) {
+      //   url = `https://gnews.io/api/v4/search?q=${searchQuery}&lang=en&country=ca&apikey=${N_API_KEY}`;
+      // }
 
-      const response = await axios.get(url);
+      // const response = await axios.get(url);
       /// --- Comment out above to deploy
 
       // --- Uncomment the following to deploy
-      // const response = await axios.get(
-      //   `/.netlify/functions/getNews?category=${selectedCategory}&search=${searchQuery}`
-      // );
+      const response = await axios.get(
+        `/.netlify/functions/getNews?category=${selectedCategory}&search=${searchQuery}`
+      );
       // --- Uncomment above to deploy
 
       const fetchedNews = response.data.articles;
@@ -90,7 +90,7 @@ const News = () => {
       setNews(fetchedNews.slice(1, 7));
     };
 
-    // fetchNews();
+    fetchNews();
   }, [selectedCategory, searchQuery]);
 
   useEffect(() => {
@@ -212,8 +212,11 @@ const News = () => {
                 alt={headline.title}
                 className="w-full h-full object-cover rounded-md opacity-90"
               />
-              <h2 className="headline-title absolute bottom-0 left-0 w-full pl-8 pr-16 py-8 font-bitter font-[500] uppercase text-[clamp(0.875rem,0.825rem+0.25vw,1.125rem)] tracking-wider text-neutral-100 bg-[rgba(0,0,0,0.7)] rounded-br-md rounded-bl-md">
-                {headline.title}
+              <div className="headline-title absolute bottom-0 left-0 w-full p-4 pr-12 md:p-8 md:pr-16 bg-[rgba(0,0,0,0.7)] rounded-br-md rounded-bl-md">
+                <h2 className="font-bitter font-[500] uppercase text-[clamp(0.875rem,0.825rem+0.25vw,1.125rem)] tracking-wider text-neutral-100 line-clamp-2 leading-tight">
+                  {headline.title}
+                </h2>
+
                 <i
                   className={`bx ${
                     bookmarks.some(
@@ -221,18 +224,18 @@ const News = () => {
                     )
                       ? 'bxs-bookmarks'
                       : 'bx-bookmarks'
-                  } text-base md:text-xl xl:text-2xl absolute bottom-4 right-4 cursor-pointer`}
+                  } text-base md:text-xl xl:text-2xl absolute bottom-4 right-4 text-neutral-100 cursor-pointer`}
                   onClick={(e) => {
                     e.stopPropagation();
                     handleBookmarkClick(headline);
                   }}
                 ></i>
-              </h2>
+              </div>
             </div>
           )}
         </div>
 
-        <div className="news-grid w-full rounded-md grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-start auto-rows-[18rem] sm:auto-rows-[12rem]">
+        <div className="news-grid w-full rounded-md grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-start auto-rows-[11rem] sm:auto-rows-[12rem]">
           {news.map((article, index) => (
             <div
               key={index}
@@ -249,9 +252,6 @@ const News = () => {
               <div className="absolute bottom-0 left-0 w-full bg-[rgba(0,0,0,0.7)] rounded-br-md rounded-bl-md p-4 pr-12">
                 <h3 className="font-bitter text-[clamp(0.875rem,0.85rem+0.125vw,1rem)] tracking-wider text-neutral-100 line-clamp-2 leading-tight">
                   {article.title}
-                  {/* {article.title.length > 60
-                  ? article.title.slice(0, 60) + '…'
-                  : article.title} */}
                 </h3>
 
                 <i
